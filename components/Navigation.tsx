@@ -9,8 +9,8 @@ interface NavigationProps {
 
 const navItems: { id: string, label: string, isRoute?: boolean, subdomain?: 'blog' | 'ama' }[] = [
   { id: SectionType.INTRO, label: 'Home' },
-  { id: SectionType.PROJECTS, label: 'Projects' },
   { id: SectionType.EXPERIENCE, label: 'Experience' },
+  { id: SectionType.PROJECTS, label: 'Projects' },
   { id: SectionType.EDUCATION, label: 'Education' },
   { id: SectionType.ALGORITHMS, label: 'CP' },
   { id: SectionType.SYSTEMS, label: 'Skills' },

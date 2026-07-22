@@ -8,7 +8,7 @@ export const experiences: ExperienceItem[] = [
     location: "San Francisco, California, United States · Remote",
     roles: [
       {
-        title: "Senior Software Engineer",
+        title: "Lead Software Engineer",
         period: "Dec 2025 – June 2026",
         description: [
           "Led engineering direction for a parental-control platform focused on child safety, screen time, and digital wellbeing."
@@ -16,7 +16,7 @@ export const experiences: ExperienceItem[] = [
         tech: ["System Design", "Backend", "Team Leadership"]
       },
       {
-        title: "Senior Software Engineer",
+        title: "Software Engineer",
         period: "Jul 2025 – Dec 2025",
         description: [
           "Built Doom Blocker (internetfilter.org), a real-time browser-based content filtering system for digital wellbeing."
