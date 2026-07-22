@@ -3,7 +3,9 @@ import {
   getFirestore,
   collection,
   getDocs,
-  getDocsFromServer
+  getDocsFromServer,
+  addDoc,
+  serverTimestamp
 } from 'firebase/firestore';
 import { BlogPost } from './types';
 import { blogPosts as defaultPosts } from './data';
@@ -66,6 +68,24 @@ const parseBlogDate = (dateStr: string): number => {
  * Bypasses the server API to prevent permission issues with default server IAM credentials.
  * Automatically falls back to LocalStorage or default static posts on failure.
  */
+export const AMA_QUESTION_MAX_LENGTH = 500;
+
+/**
+ * Submits an anonymous question to the `ama_questions` collection.
+ * Write-only from the client: Firestore rules block reads, so submissions
+ * stay private to the owner (visible only via the Firebase console).
+ */
+export const submitAmaQuestion = async (text: string): Promise<void> => {
+  const trimmed = text.trim();
+  if (!trimmed || trimmed.length > AMA_QUESTION_MAX_LENGTH) {
+    throw new Error('Question must be between 1 and ' + AMA_QUESTION_MAX_LENGTH + ' characters.');
+  }
+  await addDoc(collection(db, 'ama_questions'), {
+    text: trimmed,
+    createdAt: serverTimestamp(),
+  });
+};
+
 export const getFirestoreBlogs = async (): Promise<BlogPost[]> => {
   try {
     const blogsCollection = collection(db, 'blogs');

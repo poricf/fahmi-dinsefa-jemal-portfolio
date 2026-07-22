@@ -11,6 +11,7 @@ import { ProjectsSection } from './components/sections/ProjectsSection';
 import { AchievementsSection } from './components/sections/AchievementsSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { BlogPage } from './components/pages/BlogPage';
+import { AMAPage } from './components/pages/AMAPage';
 import { AIChat } from './components/AIChat';
 import { SectionType } from './types';
 import { Menu, X, Github, Linkedin, Twitter, Send } from 'lucide-react';
@@ -106,6 +107,7 @@ const HomePage = () => (
 );
 
 const isBlogHost = typeof window !== 'undefined' && window.location.hostname.startsWith('blog.');
+const isAmaHost = typeof window !== 'undefined' && window.location.hostname.startsWith('ama.');
 
 function App() {
   const [activeSection, setActiveSection] = useState<string>(SectionType.INTRO);
@@ -207,6 +209,9 @@ function App() {
             {isBlogHost ? (
               // blog.fahmidinsefa.com serves the blog at its root
               <Route component={BlogPage} />
+            ) : isAmaHost ? (
+              // ama.fahmidinsefa.com serves the AMA form at its root
+              <Route component={AMAPage} />
             ) : (
               <>
                 <Route path="/blog" component={BlogPage} />
