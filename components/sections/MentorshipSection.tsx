@@ -57,8 +57,8 @@ export const MentorshipSection: React.FC = () => {
                 <div className="flex-1">
                     <h3 className="text-lg text-white font-medium mb-2">Schedule 1:1 Meeting</h3>
                     <p className="text-zinc-400 text-sm mb-6 leading-relaxed">
-                        Want to discuss a project, get career advice, or just chat about technology? 
-                        You can schedule a specific time slot directly on my calendar.
+                        Mentorship, interview prep, or working through a hard systems problem —
+                        grab a slot directly on my calendar.
                     </p>
                     
                     <a 

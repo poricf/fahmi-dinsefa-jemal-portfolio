@@ -9,8 +9,8 @@ export const ContactSection: React.FC = () => {
       </div>
       
       <p className="text-zinc-400 mb-8 font-light leading-relaxed">
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. 
-        Feel free to reach out via email or connect with me on professional networks.
+        If something here is relevant to a role you're hiring for, or you just want to talk systems,
+        Rust, or competitive programming, my inbox is open.
       </p>
 
       <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); window.location.href = 'mailto:fahmidinsefa@gmail.com'; }}>
