@@ -22,22 +22,22 @@ const HomePage = () => (
       <IntroSection />
     </section>
     
-    <section id={SectionType.PROJECTS} className="scroll-mt-24">
-      <div className="mb-12 flex items-center gap-4 opacity-50">
-        <span className="font-mono text-xs text-signal">01</span>
-        <div className="h-px bg-zinc-800 w-16"></div>
-        <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">Projects</span>
-      </div>
-      <ProjectsSection />
-    </section>
-
     <section id={SectionType.EXPERIENCE} className="scroll-mt-24">
       <div className="mb-12 flex items-center gap-4 opacity-50">
-        <span className="font-mono text-xs text-signal">02</span>
+        <span className="font-mono text-xs text-signal">01</span>
         <div className="h-px bg-zinc-800 w-16"></div>
         <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">Experience</span>
       </div>
       <ExperienceSection />
+    </section>
+
+    <section id={SectionType.PROJECTS} className="scroll-mt-24">
+      <div className="mb-12 flex items-center gap-4 opacity-50">
+        <span className="font-mono text-xs text-signal">02</span>
+        <div className="h-px bg-zinc-800 w-16"></div>
+        <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">Projects</span>
+      </div>
+      <ProjectsSection />
     </section>
 
     <section id={SectionType.EDUCATION} className="scroll-mt-24">
