@@ -13,14 +13,18 @@ export const IntroSection: React.FC = () => {
     <div className="flex flex-col justify-center h-full max-w-4xl">
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
         
-        <div className="flex flex-col md:flex-row gap-8 items-start mb-6">
-          <img src="https://avatars.githubusercontent.com/u/poricf?v=4" alt="Fahmi Dinsefa" className="w-32 h-32 rounded-full border border-zinc-800 grayscale shadow-xl mb-4 md:mb-0" />
-          <div>
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start mb-6">
+          <img
+            src="/mainpicfahmi-avatar.jpg"
+            alt="Fahmi Dinsefa"
+            className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border border-zinc-800 shadow-xl shrink-0 grayscale hover:grayscale-0 transition-all duration-500"
+          />
+          <div className="text-center md:text-left">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-2 tracking-tight">
               Hi, I'm Fahmi.
             </h1>
-            
-            <div className="flex items-center gap-3 text-lg md:text-xl text-signal font-mono">
+
+            <div className="flex items-center justify-center md:justify-start gap-3 text-lg md:text-xl text-signal font-mono">
               <span className="text-zinc-500">{'>'}</span>
               <span>Software Engineer</span>
             </div>

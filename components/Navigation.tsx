@@ -20,20 +20,30 @@ const navItems: { id: string, label: string, isRoute?: boolean }[] = [
   { id: '/blog', label: 'Blog', isRoute: true },
 ];
 
+const isBlogHost = typeof window !== 'undefined' && window.location.hostname.startsWith('blog.');
+const MAIN_SITE_URL = 'https://fahmidinsefa.com';
+const BLOG_SITE_URL = 'https://blog.fahmidinsefa.com';
+
 export const Navigation: React.FC<NavigationProps> = ({ activeSection, onSelect }) => {
   const [location, setLocation] = useLocation();
 
   const handleSelect = (item: typeof navItems[0]) => {
     if (item.isRoute) {
-      setLocation(item.id);
+      // Blog lives on its own subdomain, so this is a real cross-domain navigation.
+      if (!isBlogHost) window.location.href = BLOG_SITE_URL;
+      return;
+    }
+    if (isBlogHost) {
+      // Sections only exist on the main site; send the browser there.
+      window.location.href = MAIN_SITE_URL;
+      return;
+    }
+    if (location !== '/') {
+      setLocation('/');
+      // Need a slight delay to allow rendering the home page before scrolling
+      setTimeout(() => onSelect(item.id), 100);
     } else {
-      if (location !== '/') {
-        setLocation('/');
-        // Need a slight delay to allow rendering the home page before scrolling
-        setTimeout(() => onSelect(item.id), 100);
-      } else {
-        onSelect(item.id);
-      }
+      onSelect(item.id);
     }
   };
 
@@ -43,7 +53,9 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, onSelect 
       <div className="absolute left-[5px] top-4 bottom-4 w-px bg-void-border z-0"></div>
 
       {navItems.map((item) => {
-        const isActive = item.isRoute ? location === item.id : (location === '/' && activeSection === item.id);
+        const isActive = item.isRoute
+          ? (isBlogHost || location === item.id)
+          : (!isBlogHost && location === '/' && activeSection === item.id);
         return (
           <button
             key={item.id}
