@@ -5,6 +5,15 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false;
     }
+    match /ama_questions/{questionId} {
+      // Anonymous inbox: anyone can drop a question, nobody (including the
+      // asker) can read, edit, or delete it back through the client SDK.
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly(['text', 'createdAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 500;
+    }
     match /{document=**} {
       allow read, write: if false;
     }

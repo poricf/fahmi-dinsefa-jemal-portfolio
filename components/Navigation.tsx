@@ -7,7 +7,7 @@ interface NavigationProps {
   onSelect: (section: string) => void;
 }
 
-const navItems: { id: string, label: string, isRoute?: boolean }[] = [
+const navItems: { id: string, label: string, isRoute?: boolean, subdomain?: 'blog' | 'ama' }[] = [
   { id: SectionType.INTRO, label: 'Home' },
   { id: SectionType.PROJECTS, label: 'Projects' },
   { id: SectionType.EXPERIENCE, label: 'Experience' },
@@ -17,23 +17,33 @@ const navItems: { id: string, label: string, isRoute?: boolean }[] = [
   { id: SectionType.ACHIEVEMENTS, label: 'Honors' },
   { id: SectionType.MENTORSHIP, label: 'Mentorship' },
   { id: SectionType.CONTACT, label: 'Contact' },
-  { id: '/blog', label: 'Blog', isRoute: true },
+  { id: '/blog', label: 'Blog', isRoute: true, subdomain: 'blog' },
+  { id: '/ama', label: 'AMA', isRoute: true, subdomain: 'ama' },
 ];
 
-const isBlogHost = typeof window !== 'undefined' && window.location.hostname.startsWith('blog.');
+const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+const currentSubdomain: 'blog' | 'ama' | 'main' = hostname.startsWith('blog.')
+  ? 'blog'
+  : hostname.startsWith('ama.')
+  ? 'ama'
+  : 'main';
+
+const SUBDOMAIN_URLS: Record<'blog' | 'ama', string> = {
+  blog: 'https://blog.fahmidinsefa.com',
+  ama: 'https://ama.fahmidinsefa.com',
+};
 const MAIN_SITE_URL = 'https://fahmidinsefa.com';
-const BLOG_SITE_URL = 'https://blog.fahmidinsefa.com';
 
 export const Navigation: React.FC<NavigationProps> = ({ activeSection, onSelect }) => {
   const [location, setLocation] = useLocation();
 
   const handleSelect = (item: typeof navItems[0]) => {
-    if (item.isRoute) {
-      // Blog lives on its own subdomain, so this is a real cross-domain navigation.
-      if (!isBlogHost) window.location.href = BLOG_SITE_URL;
+    if (item.isRoute && item.subdomain) {
+      // Blog/AMA each live on their own subdomain, so this is a real cross-domain navigation.
+      if (currentSubdomain !== item.subdomain) window.location.href = SUBDOMAIN_URLS[item.subdomain];
       return;
     }
-    if (isBlogHost) {
+    if (currentSubdomain !== 'main') {
       // Sections only exist on the main site; send the browser there.
       window.location.href = MAIN_SITE_URL;
       return;
@@ -53,9 +63,9 @@ export const Navigation: React.FC<NavigationProps> = ({ activeSection, onSelect 
       <div className="absolute left-[5px] top-4 bottom-4 w-px bg-void-border z-0"></div>
 
       {navItems.map((item) => {
-        const isActive = item.isRoute
-          ? (isBlogHost || location === item.id)
-          : (!isBlogHost && location === '/' && activeSection === item.id);
+        const isActive = item.subdomain
+          ? currentSubdomain === item.subdomain
+          : (currentSubdomain === 'main' && location === '/' && activeSection === item.id);
         return (
           <button
             key={item.id}
