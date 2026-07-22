@@ -105,6 +105,8 @@ const HomePage = () => (
   </div>
 );
 
+const isBlogHost = typeof window !== 'undefined' && window.location.hostname.startsWith('blog.');
+
 function App() {
   const [activeSection, setActiveSection] = useState<string>(SectionType.INTRO);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -202,10 +204,17 @@ function App() {
         {/* Main Content Area */}
         <main className="flex-1 md:ml-64 relative w-full">
           <Switch>
-            <Route path="/blog" component={BlogPage} />
-            <Route path="/" component={HomePage} />
-            {/* Catch-all */}
-            <Route component={HomePage} />
+            {isBlogHost ? (
+              // blog.fahmidinsefa.com serves the blog at its root
+              <Route component={BlogPage} />
+            ) : (
+              <>
+                <Route path="/blog" component={BlogPage} />
+                <Route path="/" component={HomePage} />
+                {/* Catch-all */}
+                <Route component={HomePage} />
+              </>
+            )}
           </Switch>
         </main>
       </div>
