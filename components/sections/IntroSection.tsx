@@ -3,10 +3,10 @@ import { Mail, Linkedin, Github, Twitter, Send } from 'lucide-react';
 
 export const IntroSection: React.FC = () => {
   const points = [
-    <>Software Engineer with a strong focus on <span className="text-signal">scalable systems</span> and architecture.</>,
-    <>Experienced in designing high-performance backend services and <span className="text-signal">infrastructure</span>.</>,
-    <><span className="text-signal">Competitive Programmer</span>.</>,
-    <>Committed to writing clean, maintainable code.</>,
+    <>Led engineering on a production parental-control platform and shipped <span className="text-signal">Doom Blocker</span>, a real-time browser-based content filter.</>,
+    <>Solo-built <span className="text-signal">ExitPrep</span> end to end — Rust backend, REST API, web app, and a React Native mobile app, all in production.</>,
+    <><span className="text-signal">ACPC Finalist</span>, top 5 in Ethiopia for competitive programming.</>,
+    <>Spent two years teaching data structures & algorithms to 60+ students at A2SV. Explaining something well is the best way to know you actually understand it.</>,
   ];
 
   return (
@@ -55,7 +55,7 @@ export const IntroSection: React.FC = () => {
               </div>
               <div className="flex gap-4">
                  <span className="text-zinc-500 w-20 shrink-0">Status</span>
-                 <span className="text-zinc-300">Open to Work</span>
+                 <span className="text-zinc-300">Available</span>
               </div>
            </div>
         </div>
