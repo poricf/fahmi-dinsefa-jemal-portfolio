@@ -48,8 +48,8 @@ export const ProjectsSection: React.FC = () => {
                     <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">{project.category}</span>
                  </div>
                  <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {project.repo && <a href={project.repo} className="text-zinc-400 hover:text-white"><Github size={16}/></a>}
-                    {project.link && <a href={project.link} className="text-zinc-400 hover:text-white"><ArrowUpRight size={16}/></a>}
+                    {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white"><Github size={16}/></a>}
+                    {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white"><ArrowUpRight size={16}/></a>}
                  </div>
               </div>
               
@@ -95,7 +95,7 @@ export const ProjectsSection: React.FC = () => {
                 <div key={idx} className="bg-void border border-zinc-900 p-4 opacity-75 hover:opacity-100 transition-opacity">
                    <div className="flex justify-between items-start mb-2">
                       <h4 className="text-sm font-mono text-zinc-300">{log.title}</h4>
-                      {log.repo && <a href={log.repo} className="text-zinc-600 hover:text-white"><Github size={12}/></a>}
+                      {log.repo && <a href={log.repo} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white"><Github size={12}/></a>}
                    </div>
                    <p className="text-[11px] text-zinc-500 leading-normal mb-3">{log.description}</p>
                    <div className="flex flex-wrap gap-1">
