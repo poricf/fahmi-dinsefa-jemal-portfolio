@@ -62,7 +62,7 @@ export const MentorshipSection: React.FC = () => {
                     </p>
                     
                     <a 
-                        href="https://calendly.com" 
+                        href="https://calendly.com/fahmidinsefa/30min"
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-mono text-signal border-b border-signal/30 pb-0.5 hover:border-signal transition-all"

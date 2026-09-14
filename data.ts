@@ -4,7 +4,7 @@ import { ExperienceItem, ProjectItem, SkillCategory, AchievementItem, BlogPost, 
 export const experiences: ExperienceItem[] = [
   {
     company: "Robotic Games Inc. (Funded by Founders)",
-    link: "https://www.roboticgames.inc", 
+    link: "",
     location: "San Francisco, California, United States · Remote",
     roles: [
       {
@@ -262,7 +262,6 @@ export const projectLogs: ProjectItem[] = [
     category: "AI",
     description: "A tool to edit videos automatically. It handles boring stuff like cutting silent parts and making thumbnails.",
     tech: ["Python", "AI", "Video Processing"],
-    repo: "https://github.com/Samuel-K95/simple_shell"
   },
   {
     title: "Rapid Jobs",
@@ -336,7 +335,7 @@ export const achievements: AchievementItem[] = [
     date: "2024",
     category: "Award",
     description: "Recognized for leading the education team and helping students succeed.",
-    link: "https://linkedin.com/in/fahmi-dinsefa"
+    link: "https://linkedin.com/in/porcif"
   },
   {
     title: "4th Place - National CP Contest",
@@ -344,7 +343,7 @@ export const achievements: AchievementItem[] = [
     date: "2024",
     category: "Competition",
     description: "Got 4th place in the nationwide competitive programming contest.",
-    link: "https://linkedin.com/in/fahmi-dinsefa"
+    link: "https://linkedin.com/in/porcif"
   },
   {
     title: "ACPC Finalist",

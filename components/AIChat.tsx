@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Sparkles, Loader2, Minimize2, AlertTriangle } from 'lucide-react';
-import { GoogleGenAI } from '@google/genai';
-import { getPortfolioContext } from '../data';
 
 interface Message {
   role: 'user' | 'model';
@@ -37,42 +35,25 @@ export const AIChat: React.FC = () => {
 
     const userMessage = input.trim();
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+    const nextMessages: Message[] = [...messages, { role: 'user', text: userMessage }];
+    setMessages(nextMessages);
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || import.meta.env.VITE_GEMINI_API_KEY });
-      
-      const portfolioContext = getPortfolioContext();
-
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: [
-            ...messages.map(m => ({ 
-                role: m.role, 
-                parts: [{ text: m.text }] 
-            })),
-            { role: 'user', parts: [{ text: userMessage }]}
-        ],
-        config: {
-          systemInstruction: `You are the AI assistant for Fahmi Dinsefa Jemal's portfolio website.
-          
-          PORTFOLIO DATA:
-          ${portfolioContext}
-
-          CORE RULES:
-          1. Answer questions based on the PORTFOLIO DATA provided.
-          2. Be helpful, professional, yet a bit witty (aligning with Fahmi's style).
-          3. If someone asks for contact info, provide his email (fahmidinsefa@gmail.com) and LinkedIn link.
-          4. Keep answers concise and strictly relevant to his professional expertise (Systems, Backend, CP, etc.).
-          5. Do not repeat facts excessively. Make responses engaging. 
-          6. If a question goes beyond the provided data, specify that you only have information on his professional portfolio.`,
-        }
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: nextMessages }),
       });
 
-      const text = response.text;
+      if (!response.ok) {
+        throw new Error(`Chat API responded with ${response.status}`);
+      }
+
+      const data = await response.json();
+      const text: string | undefined = data.text;
       if (text) {
-          setMessages(prev => [...prev, { role: 'model', text: text }]);
+          setMessages(prev => [...prev, { role: 'model', text }]);
       } else {
           setMessages(prev => [...prev, { role: 'model', text: "Hmm, I didn't get that. Could you rephrase?" }]);
       }

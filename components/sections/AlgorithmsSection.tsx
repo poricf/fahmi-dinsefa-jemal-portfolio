@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Trophy, Target, BarChart3, TrendingUp } from 'lucide-react';
+import { ExternalLink, Trophy, BarChart3 } from 'lucide-react';
 
 export const AlgorithmsSection: React.FC = () => {
   return (
@@ -51,46 +51,6 @@ export const AlgorithmsSection: React.FC = () => {
               <div>
                 <div className="text-lg font-mono text-white font-medium">Rating: 1549</div>
                 <div className="text-[11px] text-zinc-500 font-mono">759 Solved</div>
-              </div>
-            </a>
-
-            {/* Kattis */}
-            <a 
-              href="https://open.kattis.com/users/poricf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-void-surface border border-void-border p-4 rounded-sm hover:border-zinc-700 transition-colors group flex flex-col justify-between"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <div className="flex items-center gap-2">
-                  <Target size={14} className="text-zinc-400" />
-                  <span className="text-xs font-mono text-zinc-300">Kattis</span>
-                </div>
-                <ExternalLink size={10} className="text-zinc-600 group-hover:text-zinc-400 transition-colors" />
-              </div>
-              <div>
-                <div className="text-lg font-mono text-white font-medium">Score: 212</div>
-                <div className="text-[11px] text-zinc-500 font-mono">Active Profile</div>
-              </div>
-            </a>
-
-            {/* AtCoder */}
-            <a 
-              href="https://atcoder.jp/users/poricf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="bg-void-surface border border-void-border p-4 rounded-sm hover:border-zinc-700 transition-colors group flex flex-col justify-between"
-            >
-              <div className="flex justify-between items-start mb-2">
-                <div className="flex items-center gap-2">
-                  <TrendingUp size={14} className="text-zinc-400" />
-                  <span className="text-xs font-mono text-zinc-300">AtCoder</span>
-                </div>
-                <ExternalLink size={10} className="text-zinc-600 group-hover:text-zinc-400 transition-colors" />
-              </div>
-              <div>
-                <div className="text-lg font-mono text-white font-medium">Profile</div>
-                <div className="text-[11px] text-zinc-500 font-mono">@poricf</div>
               </div>
             </a>
           </div>
